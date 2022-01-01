@@ -20,12 +20,12 @@ mkdir -p /root/daq_src
 mkdir -p /root/pulledpork_src
 
 # Snort download
-wget https://www.snort.org/downloads/snort/snort-2.9.15.1.tar.gz -O /root/snort.tar.gz
+wget https://www.snort.org/downloads/snort/snort-2.9.19.tar.gz -O /root/snort.tar.gz
 tar -xvzf /root/snort.tar.gz --strip-components=1 -C /root/snort_src
 rm /root/snort.tar.gz
 
 # DAQ download
-wget https://www.snort.org/downloads/snort/daq-2.0.6.tar.gz -O /root/daq.tar.gz
+wget https://www.snort.org/downloads/snort/daq-2.0.7.tar.gz -O /root/daq.tar.gz
 tar -xvzf /root/daq.tar.gz --strip-components=1 -C /root/daq_src
 rm /root/daq.tar.gz
 
@@ -71,7 +71,7 @@ cp /root/snort_src/etc/*.dtd /etc/snort
 cp /root/snort_src/src/dynamic-preprocessors/build/usr/local/lib/snort_dynamicpreprocessor/* /usr/local/lib/snort_dynamicpreprocessor/
 
 # Install pulledpork
-wget https://github.com/mata-elang-pens/pulledpork/archive/v0.7.3.tar.gz -O /root/pulledpork.tar.gz
+wget https://github.com/mata-elang-stable/pulledpork/archive/v0.7.3.tar.gz -O /root/pulledpork.tar.gz
 tar -xvzf /root/pulledpork.tar.gz --strip-components=1 -C /root/pulledpork_src
 rm /root/pulledpork.tar.gz
 cp /root/pulledpork_src/pulledpork.pl /usr/local/bin
