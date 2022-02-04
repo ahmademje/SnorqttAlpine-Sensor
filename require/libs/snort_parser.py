@@ -97,7 +97,7 @@ def test_get_protocol_from_id():
     # TODO: create unit test for get_protocol_from_id() function
     pass
 
-def get_port_from_ethernet_data(eth: Ethernet) -> int:
+def get_port_from_ethernet_data(eth: Ethernet) -> Tuple[int, int]:
     """Get port value from Ethernet var, return 0 if throw an AttributeError exception
     Args:
         eth (Ethernet): Ethernet var
@@ -105,11 +105,43 @@ def get_port_from_ethernet_data(eth: Ethernet) -> int:
         int: Port
     """
     # TODO: create get_port_from_ethernet_data() function
-    pass
+    dst_port = 0
+    src_port = 0
+
+    try:
+        eth.data.data.dport
+    except AttributeError:
+        dst_port = 0
+    else:
+        dst_port = eth.data.data.dport
+
+    try:
+        eth.data.data.sport
+    except AttributeError:
+        src_port = 0
+    else:
+        src_port = eth.data.data.sport
+
+    return src_port, dst_port
 
 def test_get_port_from_ethernet_data():
     # TODO: create unit test for test_get_port_from_ethernet_data() function
-    pass
+    snort_message = {}
+    hasil = (22,0)
+
+    for msg in snort_listener.start_recv("/var/log/snort/snort_alert"):
+        orig_msg = b'.'.join(msg.alertmsg)
+        alert_message = (str(orig_msg, 'utf-8').replace("\u0000", "")).replace("'", "")
+        buf = msg.pkt
+        event = msg.event
+        # Unpack the Ethernet frame (mac src/dst, ethertype)
+        eth = dpkt.ethernet.Ethernet(buf)
+        src_mac = mac_addr(eth.src)
+        dest_mac = mac_addr(eth.dst)
+
+        break
+
+    assert get_port_from_ethernet_data(eth) == hasil
 
 
 def get_packet_info_from_ethernet_data(eth: Ethernet) -> dict:
@@ -126,7 +158,7 @@ def test_get_packet_info_from_ethernet_data():
     # TODO: create unit test for get_packet_info_from_ethernet_data() function
     pass
 
-def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple(str, str):
+def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple[str, str]:
     """Get ip value from Ethernet var
     Args:
         eth (Ethernet): Ethernet var
