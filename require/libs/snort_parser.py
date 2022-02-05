@@ -143,9 +143,21 @@ def get_packet_info_from_ethernet_data(eth: Ethernet) -> dict:
 
 def test_get_packet_info_from_ethernet_data():
     # TODO: create unit test for get_packet_info_from_ethernet_data() function
-    pass
+    snort_message = {}
 
-def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple(str, str):
+    for msg in snort_listener.start_recv("/var/log/snort/snort_alert"):
+        orig_msg = b'.'.join(msg.alertmsg)
+        alert_message = (str(orig_msg, 'utf-8').replace("\u0000", "")).replace("'", "")
+        buf = msg.pkt
+        event = msg.event
+        # Unpack the Ethernet frame (mac src/dst, ethertype)
+        eth = dpkt.ethernet.Ethernet(buf)
+
+        break
+
+    assert get_packet_info_from_ethernet_data(eth) == {"len": 84, "ttl": 64, "DF": True, "MF": False, "offset": 0}
+
+def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple[str, str]:
     """Get ip value from Ethernet var
     Args:
         eth (Ethernet): Ethernet var
