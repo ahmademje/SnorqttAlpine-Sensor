@@ -131,29 +131,16 @@ def test_get_protocol_from_id_143_must_false():
     assert get_protocol_from_id(protocol_id) ==  test_protocol_id #false
 #Test Case get_protocol_from_id() end
 
-def get_packet_info_from_ethernet_data(eth: Ethernet) -> dict:
-    """Get packet info from ethernet data
-    Args:
-        eth (Ethernet): Ethernet var
-    Returns:
-        dict: packet information
-    """
-    # TODO: create get_packet_info_from_ethernet_data() function
-    pass
-
-def test_get_packet_info_from_ethernet_data():
-    # TODO: create unit test for get_packet_info_from_ethernet_data() function
-    pass
-
 def get_ip_detail_from_ethernet_data(eth: Ethernet) -> dict:
     """Get ip value from Ethernet var
     Args:
         eth (Ethernet): Ethernet var
     Returns:
-        dict: source and destination
+        dict: source, destination, packet_info
     """
     # TODO: create get_ip_detail_from_ethernet_data() function
     ip = eth.data
+    len = ip.len
 
     try:
         eth.data.data.dport
@@ -173,16 +160,31 @@ def get_ip_detail_from_ethernet_data(eth: Ethernet) -> dict:
         ip_type = "IPv6"
         src_ip = ip6_to_str(ip.src)
         dest_ip = ip6_to_str(ip.dst)
+        
+        hop_lim = ip.hlim
+        packet_info = {"len": len, "hop_limit": hop_lim}
 
     elif eth.type == dpkt.ethernet.ETH_TYPE_IP:
         ip_type = "IPv4"
         src_ip = ip_to_str(ip.src)
         dest_ip = ip_to_str(ip.dst)
+
+        do_not_fragment = bool(ip.off & dpkt.ip.IP_DF)
+        more_fragments = bool(ip.off & dpkt.ip.IP_MF)
+        fragment_offset = ip.off & dpkt.ip.IP_OFFMASK
+
+        ttl = ip.ttl
+        DF = do_not_fragment
+        MF = more_fragments
+        offset = fragment_offset
+        packet_info = {"len": len, "ttl": ttl, "DF": DF, "MF": MF, "offset": offset}
         
     else:
         ip_type = "Unsupported"
         src_ip = "N/A"
         dest_ip = "N/A"
+
+        packet_info = {"not_supported_packet": "IP Packet unsupported"}
 
     return {
         "source": {
@@ -194,7 +196,8 @@ def get_ip_detail_from_ethernet_data(eth: Ethernet) -> dict:
             "ip": dest_ip,
             "port": dest_port,
             "ip_type": ip_type
-        }
+        },
+        "packet_info": packet_info
     }
 
 def test_get_ip_detail_from_ethernet_data():
