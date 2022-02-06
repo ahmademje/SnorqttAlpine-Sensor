@@ -64,7 +64,7 @@ def test_ip6_to_str():
     # TODO: create unit test for ip6_to_str() function
     ipv6_address_str = '2001:db8:3333:4444:5555:6666:7777:8888'
     ipv6_address_bytes = socket.inet_pton(socket.AF_INET6, ipv6_address_str)
-    
+
     assert ip6_to_str(ipv6_address_bytes) == ipv6_address_str
 
 
@@ -100,7 +100,7 @@ def test_get_protocol_from_id_145_must_false():
     # TODO: create unit test for get_protocol_from_id() function
     array_protocol_id = ["HOPOPT","ICMP","IGMP","GGP","IP-in-IP","ST","TCP","CBT","EGP","IGP","BBN-RCC-MON", "NVP-II","PUP","ARGUS","EMCON","EXNET","CHAOS","UDP","MUX","DCN-MEAS","HMP","PRM","XNS-IDP","TRUNK-1","TRUNK-2","LEAF-1","LEAF-2","RDP","IRTP","ISO-TP4","NETBLT","MFE-NSP","MERIT-INP","DCCP","3PC","IDPR","XTP","DDP","IDPR-CMTP","TP++","IL","IPv6","SDRP","IPv6-Route","IPv6-Frag","IDRP","RSVP","GREs","DSR","BNA","ESP","AH","I-NLSP","SWIPE","NARP","MOBILE","TLSP","SKIP","IPv6-ICMP","IPv6-NoNxt","IPv6-Opts","Host Internal Protocol","CFTP","Any Local Network","SAT-EXPAK","KRYPTOLAN","RVD","IPPC","Any Distributed File System","SAT-MON","VISA","IPCU","CPNX","CPHB","WSN","PVP","BR-SAT-MON","SUN-ND","WB-MON","WB-EXPAK","ISO-IP","VMTP","SECURE-VMTP","VINES","TTP/IPTMP","NSFNET-IGP","DGP","TCF","EIGRP","OSPF","Sprite-RPC","LARP","MTP","AX.25","OS","MICP","SCC-SP","ETHERIP","ENCAP","Any Private Encryption Scheme","GMTP","IFMP","PNNI","PIM","ARIS","SCPS","QNX","A/N","IPComp","SNP","Compaq-Peer","IPX-in-IP","VRRP","PGM","Any 0-hop Protocol","L2TP","DDX","IATP","STP","SRP","UTI","SMP","SM","PTP","IS-IS over IPv4","FIRE","CRTP","CRUDP","SSCOPMCE","IPLT","SPS","PIPE","SCTP","FC","RSVP-E2E-IGNORE","Mobility Header","UDPLite","MPLS-in-IP","manet","HIP","Shim6","WESP","ROHC","UNASSIGNED","EXPERIMENT","RESERVED"]
     test_protocol_id = array_protocol_id[145]
-    assert get_protocol_from_id(250) ==  test_protocol_id #false
+    assert get_protocol_from_id(250) !=  test_protocol_id #false
 
 def test_get_protocol_from_id_144_must_true():
     # TODO: create unit test for get_protocol_from_id() function
@@ -114,7 +114,7 @@ def test_get_protocol_from_id_144_must_false():
     protocol_id = random.randint(1,200)
     array_protocol_id = ["HOPOPT","ICMP","IGMP","GGP","IP-in-IP","ST","TCP","CBT","EGP","IGP","BBN-RCC-MON", "NVP-II","PUP","ARGUS","EMCON","EXNET","CHAOS","UDP","MUX","DCN-MEAS","HMP","PRM","XNS-IDP","TRUNK-1","TRUNK-2","LEAF-1","LEAF-2","RDP","IRTP","ISO-TP4","NETBLT","MFE-NSP","MERIT-INP","DCCP","3PC","IDPR","XTP","DDP","IDPR-CMTP","TP++","IL","IPv6","SDRP","IPv6-Route","IPv6-Frag","IDRP","RSVP","GREs","DSR","BNA","ESP","AH","I-NLSP","SWIPE","NARP","MOBILE","TLSP","SKIP","IPv6-ICMP","IPv6-NoNxt","IPv6-Opts","Host Internal Protocol","CFTP","Any Local Network","SAT-EXPAK","KRYPTOLAN","RVD","IPPC","Any Distributed File System","SAT-MON","VISA","IPCU","CPNX","CPHB","WSN","PVP","BR-SAT-MON","SUN-ND","WB-MON","WB-EXPAK","ISO-IP","VMTP","SECURE-VMTP","VINES","TTP/IPTMP","NSFNET-IGP","DGP","TCF","EIGRP","OSPF","Sprite-RPC","LARP","MTP","AX.25","OS","MICP","SCC-SP","ETHERIP","ENCAP","Any Private Encryption Scheme","GMTP","IFMP","PNNI","PIM","ARIS","SCPS","QNX","A/N","IPComp","SNP","Compaq-Peer","IPX-in-IP","VRRP","PGM","Any 0-hop Protocol","L2TP","DDX","IATP","STP","SRP","UTI","SMP","SM","PTP","IS-IS over IPv4","FIRE","CRTP","CRUDP","SSCOPMCE","IPLT","SPS","PIPE","SCTP","FC","RSVP-E2E-IGNORE","Mobility Header","UDPLite","MPLS-in-IP","manet","HIP","Shim6","WESP","ROHC","UNASSIGNED","EXPERIMENT","RESERVED"]
     test_protocol_id = array_protocol_id[144]
-    assert get_protocol_from_id(protocol_id) ==  test_protocol_id #false
+    assert get_protocol_from_id(protocol_id) !=  test_protocol_id #false
 
 def test_get_protocol_from_id_143_must_true():
     # TODO: create unit test for get_protocol_from_id() function
@@ -128,7 +128,7 @@ def test_get_protocol_from_id_143_must_false():
     protocol_id = random.randint(1,142)
     array_protocol_id = ["HOPOPT","ICMP","IGMP","GGP","IP-in-IP","ST","TCP","CBT","EGP","IGP","BBN-RCC-MON", "NVP-II","PUP","ARGUS","EMCON","EXNET","CHAOS","UDP","MUX","DCN-MEAS","HMP","PRM","XNS-IDP","TRUNK-1","TRUNK-2","LEAF-1","LEAF-2","RDP","IRTP","ISO-TP4","NETBLT","MFE-NSP","MERIT-INP","DCCP","3PC","IDPR","XTP","DDP","IDPR-CMTP","TP++","IL","IPv6","SDRP","IPv6-Route","IPv6-Frag","IDRP","RSVP","GREs","DSR","BNA","ESP","AH","I-NLSP","SWIPE","NARP","MOBILE","TLSP","SKIP","IPv6-ICMP","IPv6-NoNxt","IPv6-Opts","Host Internal Protocol","CFTP","Any Local Network","SAT-EXPAK","KRYPTOLAN","RVD","IPPC","Any Distributed File System","SAT-MON","VISA","IPCU","CPNX","CPHB","WSN","PVP","BR-SAT-MON","SUN-ND","WB-MON","WB-EXPAK","ISO-IP","VMTP","SECURE-VMTP","VINES","TTP/IPTMP","NSFNET-IGP","DGP","TCF","EIGRP","OSPF","Sprite-RPC","LARP","MTP","AX.25","OS","MICP","SCC-SP","ETHERIP","ENCAP","Any Private Encryption Scheme","GMTP","IFMP","PNNI","PIM","ARIS","SCPS","QNX","A/N","IPComp","SNP","Compaq-Peer","IPX-in-IP","VRRP","PGM","Any 0-hop Protocol","L2TP","DDX","IATP","STP","SRP","UTI","SMP","SM","PTP","IS-IS over IPv4","FIRE","CRTP","CRUDP","SSCOPMCE","IPLT","SPS","PIPE","SCTP","FC","RSVP-E2E-IGNORE","Mobility Header","UDPLite","MPLS-in-IP","manet","HIP","Shim6","WESP","ROHC","UNASSIGNED","EXPERIMENT","RESERVED"]
     test_protocol_id = array_protocol_id[143]
-    assert get_protocol_from_id(protocol_id) ==  test_protocol_id #false
+    assert get_protocol_from_id(protocol_id) !=  test_protocol_id #false
 #Test Case get_protocol_from_id() end
 
 def get_ip_detail_from_ethernet_data(eth: Ethernet) -> dict:
