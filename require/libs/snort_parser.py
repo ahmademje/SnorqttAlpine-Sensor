@@ -10,15 +10,15 @@ from snortunsock import snort_listener
 from dpkt.ethernet import Ethernet
 from snortunsock.alert import AlertPkt
 
-# MQTT = os.environ['ALERT_MQTT_SERVER']
-# topic = os.environ['ALERT_MQTT_TOPIC']
-# device_id = os.environ['DEVICE_ID']
-# company = os.environ['COMPANY']
+MQTT = os.environ['ALERT_MQTT_SERVER']
+topic = os.environ['ALERT_MQTT_TOPIC']
+device_id = os.environ['DEVICE_ID']
+company = os.environ['COMPANY']
 
-MQTT = "192.168.56.103"
-topic = "snoqttv5"
-device_id = "a456uq"
-company = "Home"
+# MQTT = "192.168.56.103"
+# topic = "snoqttv5"
+# device_id = "a456uq"
+# company = "Home"
 
 
 snort_mqtt = mqtt.Client()
@@ -55,7 +55,7 @@ def test_ip_to_str():
     ipv4_address_str = '192.168.56.103'
     ipv4_address_bytes = socket.inet_pton(socket.AF_INET, ipv4_address_str)
 
-    assert ip_to_str(ipv4_address_bytes) == '192.168.56.103'
+    assert ip_to_str(ipv4_address_bytes) == ipv4_address_str
 
 def ip6_to_str(address):
     """Print out an IPv6 address given a string
