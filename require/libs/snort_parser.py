@@ -9,15 +9,10 @@ from snortunsock import snort_listener
 from dpkt.ethernet import Ethernet
 from snortunsock.alert import AlertPkt
 
-# MQTT = os.environ['ALERT_MQTT_SERVER']
-# topic = os.environ['ALERT_MQTT_TOPIC']
-# device_id = os.environ['DEVICE_ID']
-# company = os.environ['COMPANY']
-
-MQTT = "192.168.0.120"
-topic = "snoqttv5"
-device_id = "a456uq"
-company = "Home"
+MQTT = os.environ['ALERT_MQTT_SERVER']
+topic = os.environ['ALERT_MQTT_TOPIC']
+device_id = os.environ['DEVICE_ID']
+company = os.environ['COMPANY']
 
 snort_mqtt = mqtt.Client()
 snort_mqtt.connect(str(MQTT))
@@ -97,21 +92,6 @@ def test_get_protocol_from_id():
     # TODO: create unit test for get_protocol_from_id() function
     pass
 
-def get_port_from_ethernet_data(eth: Ethernet) -> int:
-    """Get port value from Ethernet var, return 0 if throw an AttributeError exception
-    Args:
-        eth (Ethernet): Ethernet var
-    Returns:
-        int: Port
-    """
-    # TODO: create get_port_from_ethernet_data() function
-    pass
-
-def test_get_port_from_ethernet_data():
-    # TODO: create unit test for test_get_port_from_ethernet_data() function
-    pass
-
-
 def get_packet_info_from_ethernet_data(eth: Ethernet) -> dict:
     """Get packet info from ethernet data
     Args:
@@ -126,12 +106,12 @@ def test_get_packet_info_from_ethernet_data():
     # TODO: create unit test for get_packet_info_from_ethernet_data() function
     pass
 
-def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple(str, str):
+def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple[str, str, int]:
     """Get ip value from Ethernet var
     Args:
         eth (Ethernet): Ethernet var
     Returns:
-        Tuple(str, str): ip, ip_type
+        Tuple(str, str, int): ip, ip_type, port
     """
     # TODO: create get_ip_detail_from_ethernet_data() function
     pass
