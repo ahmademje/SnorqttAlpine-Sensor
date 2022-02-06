@@ -153,7 +153,6 @@ def get_snort_message(message: AlertPkt, company_name: str, device_id: str) -> d
     Returns:
         dict: Snort message
     """
-    # TODO: create unit test for get_snort_message() function
     alert_message = b'.'.join(message.alertmsg)
     alert_message = (str(alert_message, 'utf-8').replace("\u0000", "")).replace("'", "")
     packet = message.pkt
