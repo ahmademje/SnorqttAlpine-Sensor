@@ -145,15 +145,57 @@ def test_get_packet_info_from_ethernet_data():
     # TODO: create unit test for get_packet_info_from_ethernet_data() function
     pass
 
-def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple[str, str, int]:
+def get_ip_detail_from_ethernet_data(eth: Ethernet) -> dict:
     """Get ip value from Ethernet var
     Args:
         eth (Ethernet): Ethernet var
     Returns:
-        Tuple(str, str, int): ip, ip_type, port
+        dict: source and destination
     """
     # TODO: create get_ip_detail_from_ethernet_data() function
-    pass
+    ip = eth.data
+
+    try:
+        eth.data.data.dport
+    except AttributeError:
+        dest_port = 0
+    else:
+        dest_port = eth.data.data.dport
+
+    try:
+        eth.data.data.sport
+    except AttributeError:
+        src_port = 0
+    else:
+        src_port = eth.data.data.sport
+
+    if eth.type == dpkt.ethernet.ETH_TYPE_IP6:
+        ip_type = "IPv6"
+        src_ip = ip6_to_str(ip.src)
+        dest_ip = ip6_to_str(ip.dst)
+
+    elif eth.type == dpkt.ethernet.ETH_TYPE_IP:
+        ip_type = "IPv4"
+        src_ip = ip_to_str(ip.src)
+        dest_ip = ip_to_str(ip.dst)
+        
+    else:
+        ip_type = "Unsupported"
+        src_ip = "N/A"
+        dest_ip = "N/A"
+
+    return {
+        "source": {
+            "ip": src_ip,
+            "port": src_port,
+            "ip_type": ip_type
+        },
+        "destination": {
+            "ip": dest_ip,
+            "port": dest_port,
+            "ip_type": ip_type
+        }
+    }
 
 def test_get_ip_detail_from_ethernet_data():
     # TODO: create unit test for get_ip_detail_from_ethernet_data() function
