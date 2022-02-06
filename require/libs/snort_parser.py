@@ -15,12 +15,6 @@ topic = os.environ['ALERT_MQTT_TOPIC']
 device_id = os.environ['DEVICE_ID']
 company = os.environ['COMPANY']
 
-# MQTT = "192.168.56.103"
-# topic = "snoqttv5"
-# device_id = "a456uq"
-# company = "Home"
-
-
 snort_mqtt = mqtt.Client()
 snort_mqtt.connect(str(MQTT))
 snort_mqtt.loop_start()
@@ -137,21 +131,6 @@ def test_get_protocol_from_id_143_must_false():
     assert get_protocol_from_id(protocol_id) ==  test_protocol_id #false
 #Test Case get_protocol_from_id() end
 
-def get_port_from_ethernet_data(eth: Ethernet) -> int:
-    """Get port value from Ethernet var, return 0 if throw an AttributeError exception
-    Args:
-        eth (Ethernet): Ethernet var
-    Returns:
-        int: Port
-    """
-    # TODO: create get_port_from_ethernet_data() function
-    pass
-
-def test_get_port_from_ethernet_data():
-    # TODO: create unit test for test_get_port_from_ethernet_data() function
-    pass
-
-
 def get_packet_info_from_ethernet_data(eth: Ethernet) -> dict:
     """Get packet info from ethernet data
     Args:
@@ -166,12 +145,12 @@ def test_get_packet_info_from_ethernet_data():
     # TODO: create unit test for get_packet_info_from_ethernet_data() function
     pass
 
-def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple[str, str]:
+def get_ip_detail_from_ethernet_data(eth: Ethernet) -> Tuple[str, str, int]:
     """Get ip value from Ethernet var
     Args:
         eth (Ethernet): Ethernet var
     Returns:
-        Tuple(str, str): ip, ip_type
+        Tuple(str, str, int): ip, ip_type, port
     """
     # TODO: create get_ip_detail_from_ethernet_data() function
     pass
